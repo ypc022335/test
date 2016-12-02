@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <queryRule>
+        <name>getNextDateAvailabilityStatus</name>
+        <uuid>7a6a60db-dedb-4f25-ad07-173efa88f3ca</uuid>
+        <description></description>
+        <folderUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</folderUuid>
+        <dataStoreEntityCompositeUuid>46706ba8-8e92-47ad-8eba-da7655fa336a@_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5910</dataStoreEntityCompositeUuid>
+        <params>
+            <param>
+                <description></description>
+                <name>Date</name>
+                <type>{http://www.w3.org/2001/XMLSchema}date</type>
+            </param>
+            <param>
+                <description></description>
+                <name>Status</name>
+                <type>{http://www.w3.org/2001/XMLSchema}string</type>
+            </param>
+        </params>
+        <filters>
+            <filter>
+                <field>
+                    <name>Date</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}date</type>
+                </field>
+                <op>&gt;=</op>
+                <value>Date</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+            <filter>
+                <field>
+                    <name>Availability_Status</name>
+                    <type>{http://www.w3.org/2001/XMLSchema}string</type>
+                </field>
+                <op>=</op>
+                <value>Status</value>
+                <valueType>PARAMETER</valueType>
+            </filter>
+        </filters>
+        <orderings/>
+    </queryRule>
+    <roleMap public="false">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SonakshiD</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

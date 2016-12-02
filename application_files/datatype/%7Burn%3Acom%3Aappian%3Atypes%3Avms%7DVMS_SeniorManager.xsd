@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:vms"
+  xmlns:tns="urn:com:appian:types:vms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="VMS_SeniorManager">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[This cdt stores all the issues which are reported to Senior Manager ]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Request_Id" nillable="true" type="xsd:int"/>
+      <xsd:element name="Vehicle_Model" nillable="true" type="xsd:string"/>
+      <xsd:element name="Issue_Type" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

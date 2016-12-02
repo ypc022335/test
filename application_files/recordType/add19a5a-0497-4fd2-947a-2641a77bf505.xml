@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="MikePracticeRecord" a:uuid="add19a5a-0497-4fd2-947a-2641a77bf505">
+        <a:pluralName>MikePracticeRecords</a:pluralName>
+        <a:description></a:description>
+        <a:urlStub>GgnM9w</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="effe9296-4f09-46ad-8285-b42ad41e6e1c@_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5910"/>
+        <a:listViewTemplateExpr>#&quot;SYSTEM_SYSRULES_recordGridLayoutColumns&quot;(
+  columns: {
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Request_Id&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_integerField&quot;(
+        displayValue: rf!Request_Id,
+        align: &quot;RIGHT&quot;
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Customer_Name&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Customer_Name
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Vehicle Model&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_Model
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Vehicle Category&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_Category
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Scheduled Date&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_dateField&quot;(
+        displayvalue: rf!Date
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Status&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: /*if(rule!GetVMSStatusByRequestId(rf!Request_Id).data=&quot;[Maintenance_Status:Completed]&quot;,&quot;Completed&quot;,*/
+        /*if(rule!GetVMSStatusByRequestId(rf!Request_Id).data=&quot;[Maintenance_Status:In Progress]&quot;,&quot;In Progress&quot;,*/
+        /*if(rule!GetVMSStatusByRequestId(rf!Request_Id).data=&quot;[Maintenance_Status:Scheduled]&quot;,&quot;Scheduled&quot;,{}*/
+        /*)*/
+        /*)*/
+        /*)*/
+        load(
+          local!maintenanceStatus:#&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7882&quot;(rf!Request_Id).data,
+          index(local!maintenanceStatus,&quot;Maintenance_Status&quot;,&quot;&quot;)
+          
+        )
+      )
+    )  
+  },
+  pageSize: 50,
+  defaultSort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+    field: &quot;Request_Id&quot;,
+    ascending: false
+  )
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;71783b3f-0ce0-43dd-8347-868538b69d1a&quot;(&#xD;
+  requestId:rf!Request_Id&#xD;
+)&#xD;
+</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultFilter>
+            <a:field>Request_Id</a:field>
+            <a:operator>in</a:operator>
+            <a:valueExpression>tointeger(#&quot;6f84a7fe-da92-48ff-ad49-84414892abd6&quot;().data.Request_Id)&#xD;
+&#xD;
+</a:valueExpression>
+        </a:defaultFilter>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr>&quot;Vehicle Status of &quot; &amp; rf!Vehicle_Model &quot; is &quot;  rf!Customer_Name</a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>32767</a:security>
+    </recordType>
+    <roleMap/>
+</recordTypeHaul>

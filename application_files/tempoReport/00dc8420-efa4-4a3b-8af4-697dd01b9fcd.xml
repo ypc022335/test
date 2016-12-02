@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="VMS_SeniorManager_Report" a:uuid="00dc8420-efa4-4a3b-8af4-697dd01b9fcd">
+        <a:description>Represents the issue type of requests received by the Sr. Manager</a:description>
+        <a:uiExpr>=#&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6724&quot;()</a:uiExpr>
+        <a:urlStub>uvD4AQ</a:urlStub>
+    </tempoReport>
+    <roleMap/>
+</tempoReportHaul>

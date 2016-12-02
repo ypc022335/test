@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<taskReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <taskReport name="VMS_Vehicle_info_report" a:uuid="46260379-1b0f-4c16-97ee-5236188af1bf">
+        <a:description>Task report</a:description>
+        <a:uiExpr>=#&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6741&quot;()</a:uiExpr>
+        <a:urlStub>Hj-9pA</a:urlStub>
+    </taskReport>
+    <roleMap/>
+</taskReportHaul>

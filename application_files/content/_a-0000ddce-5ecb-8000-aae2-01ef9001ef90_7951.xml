@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>ABC</name>
+        <uuid>_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7951</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+      startIndex: 1,&#xD;
+      batchSize: -1,&#xD;
+      sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(&#xD;
+      field: &quot;Request_Id&quot;,&#xD;
+      ascending: true&#xD;
+    )&#xD;
+  ),&#xD;
+  local!selectedCategory,&#xD;
+  with(&#xD;
+      local!datasubset: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+        entity: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5842&quot;,&#xD;
+        query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+          aggregation: #&quot;SYSTEM_SYSRULES_queryAggregation&quot;(&#xD;
+              aggregationColumns: {&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;Request_Id&quot;, aggregationFunction: &quot;COUNT&quot;),&#xD;
+                  #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;Vehicle_Category&quot;, isGrouping: true),&#xD;
+                                  }&#xD;
+                                ),&#xD;
+          pagingInfo: local!pagingInfo&#xD;
+          )&#xD;
+      ),&#xD;
+      if(&#xD;
+        isnull(local!selectedCategory),&#xD;
+        #&quot;SYSTEM_SYSRULES_columnChartField&quot;(&#xD;
+            label: &quot;Category-Based Vehicle requests Report&quot;,&#xD;
+            labelposition: &quot;ABOVE&quot;,&#xD;
+            categories: {&#xD;
+            index(local!datasubset.data, &quot;Vehicle_Category&quot;, null)&#xD;
+            },&#xD;
+            series: {&#xD;
+              apply(&#xD;
+                #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: _, data: _, links: _),&#xD;
+                merge(&#xD;
+                  index(local!datasubset.data, &quot;Vehicle_Category&quot;, null),&#xD;
+                  index(local!datasubset.data, &quot;Request_Id&quot;, null),&#xD;
+                  apply(&#xD;
+                    #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value: _, saveInto: local!selectedCategory),&#xD;
+                    index(local!datasubset.data, &quot;Vehicle_Category&quot;, null)&#xD;
+                  )&#xD;
+                )&#xD;
+              )&#xD;
+            }&#xD;
+        ),&#xD;
+        load(&#xD;
+          local!gridPagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+            startIndex: 1,&#xD;
+            batchSize: 20,&#xD;
+            sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(&#xD;
+              field: &quot;Request_Id&quot;,&#xD;
+              ascending: true&#xD;
+            )&#xD;
+          ),&#xD;
+        with(&#xD;
+          local!gridDatasubset: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+            entity:#&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5842&quot;,&#xD;
+            query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+              selection: #&quot;SYSTEM_SYSRULES_querySelection&quot;(columns: {&#xD;
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Request_Id&quot;),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Name&quot;),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Vehicle_Model&quot;),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Vehicle_Category&quot;),&#xD;
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Date&quot;)&#xD;
+                 &#xD;
+              }),&#xD;
+             filter: #&quot;SYSTEM_SYSRULES_queryFilter&quot;(field: &quot;Vehicle_Category&quot;, operator: &quot;=&quot;, value: local!selectedCategory),&#xD;
+&#xD;
+              pagingInfo: local!gridPagingInfo&#xD;
+              &#xD;
+            &#xD;
+              &#xD;
+            )&#xD;
+          ),&#xD;
+           {&#xD;
+            #&quot;SYSTEM_SYSRULES_linkField&quot;(&#xD;
+              labelPosition: &quot;COLLAPSED&quot;,&#xD;
+              links: #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(&#xD;
+                label: &quot;Back to Chart&quot;,&#xD;
+                value: null,&#xD;
+                saveInto: {&#xD;
+                  local!selectedCategory,&#xD;
+                  /* Need to reset the paging info back to the first page when the user */&#xD;
+                  /* changes the filter. Otherwise, the grid could error out.           */&#xD;
+                  a!save(local!gridPagingInfo.startIndex, 1)&#xD;
+                }&#xD;
+              )&#xD;
+            ),&#xD;
+          #&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+            label: local!selectedCategory &amp; &quot;  Vehicles &quot;,&#xD;
+            totalCount: local!gridDatasubset.totalCount,&#xD;
+            columns: {&#xD;
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Request Id&quot;, field: &quot;Request_Id&quot;, data: index(local!gridDatasubset.data, &quot;Request_Id&quot;, {})),&#xD;
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Customer Name&quot;, field: &quot;Customer_Name&quot;, data: index(local!gridDatasubset.data, &quot;Customer_Name&quot;, {})),&#xD;
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Vehicle Model&quot;, field: &quot;Vehicle_Model&quot;, data: index(local!gridDatasubset.data, &quot;Vehicle_Model&quot;, {})),&#xD;
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Vehicle Category&quot;, field: &quot;Vehicle_Category&quot;, data: index(local!gridDatasubset.data, &quot;Vehicle_Category&quot;, {})),&#xD;
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Date&quot;, field: &quot;Date&quot;, data: index(local!gridDatasubset.data, &quot;Date&quot;, {})),&#xD;
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Status&quot;,&#xD;
+          field: &quot;Maintenance_Status&quot;,&#xD;
+          data: apply(#&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7886&quot;,index(local!gridDatasubset.data, &quot;Request_Id&quot;, &quot;&quot;))&#xD;
+          &#xD;
+        ),&#xD;
+        &#xD;
+      &#xD;
+           &#xD;
+            },&#xD;
+            value: local!gridPagingInfo,&#xD;
+            saveInto: local!gridPagingInfo&#xD;
+          )&#xD;
+           }&#xD;
+        )&#xD;
+      )&#xD;
+    )&#xD;
+  )&#xD;
+)&#xD;
+</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

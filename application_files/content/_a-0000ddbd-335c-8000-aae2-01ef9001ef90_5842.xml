@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <constant>
+        <name>VMS_VEHICLEINFORMATION_CONSTANT</name>
+        <uuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5842</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>DataStoreEntity</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value a:id="effe9296-4f09-46ad-8285-b42ad41e6e1c@_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5910"/>
+        </typedValue>
+    </constant>
+    <roleMap public="true">
+        <role allowForAll="true" inherit="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="true" inherit="false" name="authors">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_85</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_84</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_94</groupUuid>
+            </groups>
+        </role>
+        <role allowForAll="false" inherit="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_83</groupUuid>
+            </groups>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

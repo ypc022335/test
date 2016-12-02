@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:vms"
+  xmlns:tns="urn:com:appian:types:vms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="VMS_VehicleInformation">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[This cdt contains all the information about vehicle and customer entered by Regina]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Request_Id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Customer_Name" nillable="true" type="xsd:string"/>
+      <xsd:element name="Customer_Contact_Number" nillable="true" type="xsd:string"/>
+      <xsd:element name="Customer_Email_Id" nillable="true" type="xsd:string"/>
+      <xsd:element name="Vehicle_Category" nillable="true" type="xsd:string"/>
+      <xsd:element name="Vehicle_Model" nillable="true" type="xsd:string"/>
+      <xsd:element name="Vehicle_Plate_Number" nillable="true" type="xsd:string"/>
+      <xsd:element name="Vehicle_License_Number" nillable="true" type="xsd:string"/>
+      <xsd:element name="Date" nillable="true" type="xsd:date"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

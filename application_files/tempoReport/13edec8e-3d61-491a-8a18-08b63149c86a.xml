@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="VMS_Reports" a:uuid="13edec8e-3d61-491a-8a18-08b63149c86a">
+        <a:description></a:description>
+        <a:uiExpr>=#&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7974&quot;()</a:uiExpr>
+        <a:urlStub>9dZGlg</a:urlStub>
+    </tempoReport>
+    <roleMap>
+        <role name="report_viewer">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_92</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_93</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</tempoReportHaul>

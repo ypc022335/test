@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_AdminInterface</name>
+        <uuid>2616e939-1a9b-47d4-b3d2-57262510bb8e</uuid>
+        <description>The system user can query to admin using this interface</description>
+        <parentUuid>_a-0000dd72-6187-8000-aae2-01ef9001ef90_4186</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Query to Administrator&quot;,
+  instructions: &quot;Enter query details to report to the Administrator&quot;,
+  firstColumnContents: {
+    #&quot;SYSTEM_SYSRULES_textField&quot;(
+      label: &quot;System User&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      placeholder: &quot;Enter Your Name&quot;,
+      value: loggedInUser(),
+      saveInto: ri!admin.systemUserName_text,
+      refreshAfter: &quot;UNFOCUS&quot;,
+      required: true,
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_textField&quot;(
+      label: &quot;Email Id&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      placeholder: &quot;Enter your Email Id&quot;,
+      value: user(loggedInUser(),&quot;email&quot;),
+      saveInto: ri!email_text,
+      refreshAfter: &quot;UNFOCUS&quot;,
+      required: true,
+      readonly: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Issue Category&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      placeholderLabel: &quot;Select a category of issue&quot;,
+      choiceLabels: {&quot;O.S.&quot;, &quot;Tools&quot;,
+        &quot;Operational&quot;,
+        &quot;Database&quot;,
+        &quot;Security based&quot;,
+        &quot;Network&quot;,
+        &quot;Web&quot;,
+        &quot;Configurations&quot;},
+      choiceValues: {&quot;O.S.&quot;, &quot;Tools&quot;,
+        &quot;Operational&quot;,
+        &quot;Database&quot;,
+        &quot;Security Based&quot;,
+        &quot;Web&quot;,
+        &quot;Networks&quot;,
+        &quot;Configurations&quot;},
+      value: ri!admin.issueCategory_text,
+      saveInto: ri!admin.issueCategory_text,
+      required: true,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_paragraphField&quot;(
+      label: &quot;Description of Issue&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      placeholder: &quot;Give a detailed Description of your Issue&quot;,
+      value: ri!admin.issueDescription_text,
+      saveInto: ri!admin.issueDescription_text,
+      refreshAfter: &quot;UNFOCUS&quot;,
+      required: true,
+      height: &quot;MEDIUM&quot;,
+      validations: {}
+    )
+  },
+  secondColumnContents: {
+    /* Add components here for a two-column form */
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;&quot;,
+      firstColumnContents: {},
+      secondColumnContents: {}
+    )
+  },
+  buttons:{
+    #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+      label:&quot;Submit&quot;,
+      style:&quot;PRIMARY&quot;,
+      confirmmessage: &quot;Submit this Query?&quot;,
+      value:ri!action_text,
+      saveInto:ri!action_text
+    ),
+    #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+      label:&quot;Cancel&quot;,
+      style:&quot;NORMAL&quot;,
+      confirmmessage: &quot;Cancel this Query?&quot;,
+      value:&quot;Cancel&quot;,
+      saveInto:ri!action_text,
+      skipvalidation: true
+
+    )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>admin</name>
+            <type>
+                <name>VMS_AdminData</name>
+                <namespace>urn:com:appian:types:vms</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>action_text</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>email_text</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>ShraddhaJ</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types:vms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:VMS_AdminData"/>
+                    <a:nameRef>admin</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>action_text</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>email_text</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

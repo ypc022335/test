@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VehicleCategoryBasedReportNew</name>
+        <uuid>_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7943</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: 20,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;Customer_Name&quot;,
+      ascending: false
+    )
+  ),
+  with(
+    local!datasubset: queryrecord(
+      #&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7874&quot;,
+      #&quot;SYSTEM_SYSRULES_query&quot;(
+        selection: #&quot;SYSTEM_SYSRULES_querySelection&quot;(columns: {
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Name&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Contact_Number&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Email_Id&quot;),
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Request_Id&quot;),
+        }),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridField&quot;(
+      totalCount: local!datasubset.totalCount,
+      columns: {
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Customer_Name&quot;,
+          field: &quot;Customer_Name&quot;,
+          data: index(local!datasubset.data, &quot;Customer_Name&quot;, null)
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Customer_Contact_Number&quot;,
+          field: &quot;Customer_Contact_Number&quot;,
+          data: index(local!datasubset.data, &quot;Customer_Contact_Number&quot;, null)
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Customer_Email_Id&quot;,
+          field: &quot;Customer_Email_Id&quot;,
+          data: index(local!datasubset.data, &quot;Customer_Email_Id&quot;, null)
+        ),
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Request_Id&quot;,
+          field: &quot;Request_Id&quot;,
+          data: index(local!datasubset.data, &quot;Request_Id&quot;, null)
+        ),
+         #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+          label: &quot;Status&quot;,
+          field: &quot;Maintenance_Status&quot;,
+          data: apply(#&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7886&quot;,index(local!datasubset.data, &quot;Request_Id&quot;, &quot;&quot;))
+          
+        ),
+      },
+      value: local!pagingInfo,
+      saveInto: local!pagingInfo
+    )
+  )
+)
+</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

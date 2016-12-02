@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="VMS_CategoryBased_Report" a:uuid="e1467c7e-f4c2-4e23-9f1e-d416599a7eb8">
+        <a:description>Category based description of vehicles in the process</a:description>
+        <a:uiExpr>=#&quot;0a400cf1-1fd5-4744-8ef3-17e4ffa10ddc&quot;()</a:uiExpr>
+        <a:urlStub>KYi2Yg</a:urlStub>
+    </tempoReport>
+    <roleMap/>
+</tempoReportHaul>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <group>
+        <name>Maintainance</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>_e-0000ddba-c186-8000-aae2-011e94011e94_84</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>Group of people like Mike who will do the maintainance</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups/>
+    </members>
+    <admins>
+        <users>
+            <userUuid>SnehalH</userUuid>
+        </users>
+        <groups/>
+    </admins>
+    <ruleSet/>
+</groupHaul>

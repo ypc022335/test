@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_InspectorRequiresParts</name>
+        <uuid>f707adad-e778-4f66-a3b0-86c6d21bc38d</uuid>
+        <description>This interface is displayed when inspector clicks that He requires more parts for that particular vehicle request Id</description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+local!parts_un,&#xD;
+local!parts_list_unavailable: #&quot;75294063-eba0-4f17-abb2-4e314cb1c901&quot;(&#xD;
+    &quot;Unavailable&quot;&#xD;
+  ),&#xD;
+#&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+    label:&quot;Request for Parts&quot;,&#xD;
+    &#xD;
+    firstColumnContents:&#xD;
+  {&#xD;
+      #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;The following parts are currently unavailable.&quot;,&#xD;
+        readOnly:true&#xD;
+      ),&#xD;
+      #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;Check the parts which are required and those would be available soon.&quot;,&#xD;
+        readOnly:true&#xD;
+      ),&#xD;
+       #&quot;SYSTEM_SYSRULES_checkboxField&quot;(&#xD;
+        label: &quot;Parts Unavailable:&quot;,&#xD;
+        &#xD;
+        choiceLabels: {&#xD;
+          index(&#xD;
+            local!parts_list_unavailable,&#xD;
+            &quot;Parts_Name&quot;&#xD;
+          )&#xD;
+        },&#xD;
+        choiceValues: {&#xD;
+          index(&#xD;
+            local!parts_list_unavailable,&#xD;
+            &quot;Parts_Id&quot;&#xD;
+          )&#xD;
+        },&#xD;
+        value: local!parts_un,&#xD;
+        saveInto: {&#xD;
+          local!parts_un&#xD;
+          &#xD;
+        }&#xD;
+      )&#xD;
+      &#xD;
+  },&#xD;
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+      primaryButtons: {&#xD;
+          #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+          label:&quot;Back&quot;,&#xD;
+          value:&quot;Back&quot;,&#xD;
+          saveInto:ri!reuire_more_parts_txt&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+          label: &quot;Submit&quot;,&#xD;
+          style: &quot;PRIMARY&quot;,&#xD;
+          saveInto: {ri!reuire_more_parts_txt,&#xD;
+          a!save(&#xD;
+            ri!parts_not_available,&#xD;
+            #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6067&quot;(&#xD;
+              partId:local!parts_un,&#xD;
+              requestId:ri!vehicle.Request_Id&#xD;
+            )&#xD;
+          )&#xD;
+          }&#xD;
+        )&#xD;
+      &#xD;
+      }&#xD;
+      )&#xD;
+  &#xD;
+  &#xD;
+  &#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>vehicle</name>
+            <type>
+                <name>VMS_VehicleInformation</name>
+                <namespace>urn:com:appian:types:vms</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>parts_not_available</name>
+            <type>
+                <name>VMS_Parts_Required?list</name>
+                <namespace>urn:com:appian:types:vms</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>reuire_more_parts_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SonakshiD</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types:vms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:VMS_VehicleInformation"/>
+                    <a:nameRef>vehicle</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:nameRef>parts_not_available</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>reuire_more_parts_txt</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

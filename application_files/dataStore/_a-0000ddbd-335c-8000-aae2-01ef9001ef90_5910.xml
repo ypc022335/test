@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <dataStore>
+        <uuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5910</uuid>
+        <name>VMS_DataStore_Practice</name>
+        <description></description>
+        <dataSourceKey>jdbc/appian_test</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>true</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>effe9296-4f09-46ad-8285-b42ad41e6e1c</uuid>
+                <name>VMS_VehicleInformation</name>
+                <type>{urn:com:appian:types:vms}VMS_VehicleInformation</type>
+            </entity>
+            <entity>
+                <uuid>6e016ff8-6dc4-4d32-9d76-141e30f6373c</uuid>
+                <name>VMS_PartsId</name>
+                <type>{urn:com:appian:types:vms}VMS_PartsId</type>
+            </entity>
+            <entity>
+                <uuid>20446e04-d800-461e-9e61-017659c98aee</uuid>
+                <name>VMS_MikeDevice</name>
+                <type>{urn:com:appian:types:vms}VMS_MikeDevice</type>
+            </entity>
+            <entity>
+                <uuid>717e5ff5-312c-4350-a049-91ae81ab73ae</uuid>
+                <name>VMS_VehicleStatus</name>
+                <type>{urn:com:appian:types:vms}VMS_VehicleStatus</type>
+            </entity>
+            <entity>
+                <uuid>7616e155-e604-4625-ac0d-6c641c81c24d</uuid>
+                <name>VMS_SeniorManager</name>
+                <type>{urn:com:appian:types:vms}VMS_SeniorManager</type>
+            </entity>
+            <entity>
+                <uuid>adc69135-371c-4f08-bca8-f3afd4d688ed</uuid>
+                <name>VMS_Parts_Required</name>
+                <type>{urn:com:appian:types:vms}VMS_Parts_Required</type>
+            </entity>
+            <entity>
+                <uuid>46706ba8-8e92-47ad-8eba-da7655fa336a</uuid>
+                <name>VMS_ScheduleTable</name>
+                <type>{urn:com:appian:types:vms}VMS_ScheduleTable</type>
+            </entity>
+            <entity>
+                <uuid>79f91f85-84d2-47c8-8552-4f3419988f0c</uuid>
+                <name>VMS_AdminData</name>
+                <type>{urn:com:appian:types:vms}VMS_AdminData</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role allowForAll="false" inherit="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="authors">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_92</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_85</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_84</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_83</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_94</groupUuid>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_93</groupUuid>
+            </groups>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</dataStoreHaul>

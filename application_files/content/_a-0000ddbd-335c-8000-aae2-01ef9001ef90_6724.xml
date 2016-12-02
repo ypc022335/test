@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_SeniorManagerReport</name>
+        <uuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6724</uuid>
+        <description>Senior manager has the report of issues due to which requests are not scheduled</description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+    startIndex: 1,
+    batchSize: -1,
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+      field: &quot;Request_Id&quot;,
+      descending: true
+    )
+  ),
+  local!selectedIssue,
+  with(
+    local!datasubset: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+      entity: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6306&quot;,
+      query: #&quot;SYSTEM_SYSRULES_query&quot;(
+        aggregation: #&quot;SYSTEM_SYSRULES_queryAggregation&quot;(aggregationColumns: {
+          #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;Issue_Type&quot;, isGrouping: true),
+          #&quot;SYSTEM_SYSRULES_queryAggregationColumn&quot;(field: &quot;Request_Id&quot;, aggregationFunction: &quot;COUNT&quot;),
+        }),
+        pagingInfo: local!pagingInfo
+      )
+    ),
+    if(
+      isnull(local!selectedIssue),
+    #&quot;SYSTEM_SYSRULES_pieChartField&quot;(
+      label: &quot;Issue Report of the Senior Manager&quot;,
+      labelposition: &quot;ABOVE&quot;,
+      series: {
+        apply(
+          #&quot;SYSTEM_SYSRULES_chartSeries&quot;(label: _, data: _,links: _),
+          merge(
+            index(local!datasubset.data, &quot;Issue_Type&quot;, null),
+            index(local!datasubset.data, &quot;Request_Id&quot;, null),
+            apply(
+              #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(value: _, saveInto: local!selectedIssue),
+              index(local!datasubset.data, &quot;Issue_Type&quot;, null)
+            )
+          )
+        )
+      },
+      showdatalabels: true,
+      showtooltips: true,
+      showaspercentage: true
+    ),
+    load(
+        local!gridPagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+          startIndex: 1,
+          batchSize: 20,
+          sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+            field: &quot;Issue_Type&quot;,
+            ascending: true
+          )
+        ),
+        with(
+          local!gridDatasubset: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+            entity: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6306&quot;,
+            query: #&quot;SYSTEM_SYSRULES_query&quot;(
+              selection: #&quot;SYSTEM_SYSRULES_querySelection&quot;(columns: {
+                 
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Request_Id&quot;),
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Vehicle_Model&quot;),
+                #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Issue_Type&quot;)
+              }),
+              filter: #&quot;SYSTEM_SYSRULES_queryFilter&quot;(field: &quot;Issue_Type&quot;, operator: &quot;=&quot;, value: local!selectedIssue),
+              pagingInfo: local!gridPagingInfo
+            )
+          ),
+           {
+            #&quot;SYSTEM_SYSRULES_linkField&quot;(
+              labelPosition: &quot;COLLAPSED&quot;,
+              links: #&quot;SYSTEM_SYSRULES_dynamicLink&quot;(
+                label: &quot;Back to Chart&quot;,
+                value: null,
+                saveInto: {
+                  local!selectedIssue,
+                  /* Need to reset the paging info back to the first page when the user */
+                  /* changes the filter. Otherwise, the grid could error out.           */
+                  a!save(local!gridPagingInfo.startIndex, 1)
+                }
+              )
+            ),
+          #&quot;SYSTEM_SYSRULES_gridField&quot;(
+            label: local!selectedIssue &amp; &quot; Issues&quot;,
+            totalCount: local!gridDatasubset.totalCount,
+            columns: {
+              
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Request Id&quot;, field: &quot;Request_Id&quot;, data: index(local!gridDatasubset.data, &quot;Request_Id&quot;, {})),
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                label: &quot;Customer Name&quot;, 
+              field: &quot;Customer_Name&quot;,
+              data: apply(#&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7965&quot;,index(local!gridDatasubset.data, &quot;Request_Id&quot;, &quot;&quot;))
+              
+              ),
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(
+                label: &quot;Plate Number&quot;, 
+              field: &quot;Vehicle_Plate_Number&quot;,
+              data: apply(#&quot;_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7969&quot;,index(local!gridDatasubset.data, &quot;Request_Id&quot;, &quot;&quot;))
+              
+              ),
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Vehicle Model&quot;, field: &quot;Vehicle_Model&quot;, data: index(local!gridDatasubset.data, &quot;Vehicle_Model&quot;, {})),
+              #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Issue Type&quot;, field: &quot;Issue_Type&quot;, data: index(local!gridDatasubset.data, &quot;Issue_Type&quot;, {}))
+              
+              },
+            value: local!gridPagingInfo,
+            saveInto: local!gridPagingInfo
+          )
+           }
+        )
+      )
+    )
+  )
+)
+  
+</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

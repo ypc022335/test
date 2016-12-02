@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>fetchModels</name>
+        <uuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6664</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(&#xD;
+  ri!type = &quot;2-wheeler&quot;,&#xD;
+  {&#xD;
+    {&#xD;
+      &quot;Activa&quot;,&#xD;
+      &quot;Pleasure&quot;,&#xD;
+      &quot;Scooty&quot;,&#xD;
+      &#xD;
+      &quot;R15&quot;&#xD;
+    }&#xD;
+  },&#xD;
+  {&#xD;
+    if(&#xD;
+      ri!type = &quot;3-wheeler&quot;,&#xD;
+      {&#xD;
+        {&#xD;
+          &quot;Auto&quot;,&#xD;
+          &quot;Tempo&quot;&#xD;
+        }&#xD;
+      },&#xD;
+      if(&#xD;
+        ri!type = &quot;4-wheeler&quot;,&#xD;
+        {&#xD;
+          &quot;BMW&quot;,&#xD;
+          &quot;Audi&quot;,&#xD;
+          &quot;i-10&quot;,&#xD;
+          &quot;i-20&quot;,&#xD;
+          &quot;HondaCity&quot;,&#xD;
+          &quot;Maruti-Suzuki&quot;&#xD;
+        },&#xD;
+        {}&#xD;
+      )&#xD;
+    )&#xD;
+  }&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>type</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>QueryEntityForStatus</name>
+        <uuid>6f84a7fe-da92-48ff-ad49-84414892abd6</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+  entity: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5856&quot;,
+  query: #&quot;SYSTEM_SYSRULES_query&quot;(
+    logicalExpression: {
+      
+      #&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+        operator: &quot;OR&quot;,
+        filters: {
+          #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+            field: &quot;Maintenance_Status&quot;,
+            operator: &quot;=&quot;,
+            value: &quot;Scheduled&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+            field: &quot;Maintenance_Status&quot;,
+            operator: &quot;=&quot;,
+            value: &quot;Under maintenance&quot;
+          ),
+          #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+            field: &quot;Maintenance_Status&quot;,
+            operator: &quot;=&quot;,
+            value: &quot;Completed&quot;
+          )
+        }
+      )
+    }/*  a!queryFilter(
+          field: &quot;Maintenance_Status&quot;,
+          operator: &quot;=&quot;,
+          value: {
+            a!query(
+              logicalExpression: a!queryLogicalExpression(
+                operator: &quot;OR&quot;,
+                filters: {
+                  a!queryFilter(
+                    field: &quot;Maintenance_Status&quot;,
+                    operator: &quot;=&quot;,
+                    value: &quot;Scheduled&quot;
+                  ),
+                  a!queryFilter(
+                    field: &quot;Maintenance_Status&quot;,
+                    operator: &quot;=&quot;,
+                    value: &quot;Under maintenance&quot;
+                  ),
+                  a!queryFilter(
+                    field: &quot;Maintenance_Status&quot;,
+                    operator: &quot;=&quot;,
+                    value: &quot;Completed&quot;
+                  )
+                }
+              ),
+              pagingInfo: a!pagingInfo(
+      startIndex: 1,
+      batchSize: - 1
+    )
+            )
+          }
+        )*/
+    ,
+    pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+      startIndex: 1,
+      batchSize: - 1
+    )
+  )
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

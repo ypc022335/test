@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_VehicleInformationInterface</name>
+        <uuid>8b63ce31-b54a-4673-a25b-90b4506b57ec</uuid>
+        <description>This interface is used by Regina to enter vehicle info into the database</description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load&#xD;
+(&#xD;
+  &#xD;
+#&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+  label:&quot;Customer Details&quot;,&#xD;
+  instructions:&quot;Please fill all the required fields.&quot;,&#xD;
+  firstColumnContents:&#xD;
+  {&#xD;
+     #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;Customer Name&quot;,&#xD;
+      placeholder: &quot;Enter Customer Name&quot;,&#xD;
+      value:ri!vehicle.Customer_Name,&#xD;
+      saveInto: ri!vehicle.Customer_Name,&#xD;
+      required: true,&#xD;
+      validations: {}&#xD;
+    ),&#xD;
+     #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;Customer Contact Number&quot;,&#xD;
+      placeholder: &quot;Enter contact number&quot;,&#xD;
+      value:ri!vehicle.Customer_Contact_Number,&#xD;
+      saveInto:ri!vehicle.Customer_Contact_Number,&#xD;
+      refreshAfter: &quot;KEYPRESS&quot;,&#xD;
+      required: true,&#xD;
+      validations: {&#xD;
+          }&#xD;
+    ),&#xD;
+     &#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;Customer Email Id&quot;,&#xD;
+      placeholder: &quot;Enter Email ID&quot;,&#xD;
+      value:ri!vehicle.Customer_Email_Id,&#xD;
+      saveInto: ri!vehicle.Customer_Email_Id,&#xD;
+       validations: {&#xD;
+    &#xD;
+        &#xD;
+                    },&#xD;
+      required: true&#xD;
+    ),&#xD;
+     &#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+        label: &quot;Vehicle Category&quot;,&#xD;
+        labelPosition: &quot;ABOVE&quot;,&#xD;
+        placeholderLabel:&quot;Select Vehicle Category&quot;,&#xD;
+        choiceLabels:{&#xD;
+          &quot;2-wheeler&quot;,&#xD;
+          &quot;3-wheeler&quot;,&#xD;
+          &quot;4-wheeler&quot;&#xD;
+        },&#xD;
+        choiceValues:{&#xD;
+          &quot;2-wheeler&quot;,&quot;3-wheeler&quot;,&quot;4-wheeler&quot;&#xD;
+        },&#xD;
+        value:ri!vehicle.Vehicle_Category,&#xD;
+        saveInto : ri!vehicle.Vehicle_Category&#xD;
+      )&#xD;
+      &#xD;
+      },&#xD;
+     secondColumnContents:&#xD;
+     {&#xD;
+   /*    &#xD;
+     &#xD;
+    a!textField(&#xD;
+      label:&quot;Vehicle Model&quot;,&#xD;
+      placeholder: &quot;Enter Vehicle Model&quot;,&#xD;
+      value:ri!vehicle.Vehicle_Model,&#xD;
+      saveInto: ri!vehicle.Vehicle_Model,&#xD;
+      required: true&#xD;
+    )*/&#xD;
+    &#xD;
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(&#xD;
+            label: &quot;Vehicle Model:&quot;,&#xD;
+           &#xD;
+            placeholderLabel: &quot;Enter Vehicle Model&quot;,&#xD;
+            choiceLabels: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6664&quot;(&#xD;
+              ri!vehicle.Vehicle_Category&#xD;
+            ),&#xD;
+            choiceValues: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6664&quot;(&#xD;
+              ri!vehicle.Vehicle_Category&#xD;
+            ),&#xD;
+            value: if(&#xD;
+              or(&#xD;
+                and(&#xD;
+                  ri!vehicle.Vehicle_Category = &quot;2-wheeler&quot;,&#xD;
+                  contains({&#xD;
+                     &quot;Activa&quot;,&#xD;
+                    &quot;Pleasure&quot;,&#xD;
+                    &quot;Scooty&quot;,&#xD;
+                    &quot;HondaCity&quot;,&#xD;
+                    &quot;R15&quot;},&#xD;
+                    ri!vehicle.Vehicle_Model&#xD;
+                  )&#xD;
+                ),&#xD;
+                and(&#xD;
+                  ri!vehicle.Vehicle_Category = &quot;3-wheeler&quot;,&#xD;
+                  contains({&#xD;
+                   &quot;Auto&quot;,&#xD;
+                  &quot;Tempo&quot;},&#xD;
+                  ri!vehicle.Vehicle_Model&#xD;
+                  )&#xD;
+                ),&#xD;
+                and(&#xD;
+                  ri!vehicle.Vehicle_Category = &quot;4-wheeler&quot;,&#xD;
+                  contains({&#xD;
+                   &quot;BMW&quot;,&#xD;
+                  &quot;Audi&quot;,&#xD;
+                  &quot;i-10&quot;,&#xD;
+                  &quot;i-20&quot;,&#xD;
+                  &quot;Maruti-Suzuki&quot;},&#xD;
+                     ri!vehicle.Vehicle_Model&#xD;
+                  )&#xD;
+                )&#xD;
+              ),&#xD;
+             ri!vehicle.Vehicle_Model,&#xD;
+              null&#xD;
+            ),&#xD;
+            saveInto:  ri!vehicle.Vehicle_Model&#xD;
+          ),&#xD;
+     &#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;Vehicle Plate Number&quot;,&#xD;
+      placeholder: &quot;Enter Vehicle Plate Number&quot;,&#xD;
+      value:ri!vehicle.Vehicle_Plate_Number,&#xD;
+      saveInto: ri!vehicle.Vehicle_Plate_Number,&#xD;
+       validations: { },&#xD;
+      required: true&#xD;
+    ),&#xD;
+     &#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;Customer License Number&quot;,&#xD;
+      placeholder: &quot;Enter License Number&quot;,&#xD;
+      value:ri!vehicle.Vehicle_License_Number,&#xD;
+      saveInto: ri!vehicle.Vehicle_License_Number,&#xD;
+       validations: {  },&#xD;
+      required: true&#xD;
+    ),&#xD;
+     &#xD;
+    #&quot;SYSTEM_SYSRULES_dateField&quot;(&#xD;
+      label:&quot;Enter Date&quot;,&#xD;
+      placeholder: &quot;Enter Date&quot;,&#xD;
+      value:ri!vehicle.Date,&#xD;
+      saveInto: ri!vehicle.Date,&#xD;
+      required: true&#xD;
+    )&#xD;
+&#xD;
+     },&#xD;
+  buttons:{&#xD;
+    #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+    #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+      label:&quot;Submit&quot;,&#xD;
+      style:&quot;PRIMARY&quot;,&#xD;
+      value:&quot;Submit&quot;,&#xD;
+      saveInto:ri!action_txt&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+      label:&quot;Cancel&quot;,&#xD;
+      style:&quot;NORMAL&quot;,&#xD;
+      value:&quot;Cancel&quot;,&#xD;
+      saveInto:ri!action_txt,&#xD;
+      skipvalidation: true&#xD;
+&#xD;
+    )&#xD;
+    )&#xD;
+  }&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>vehicle</name>
+            <type>
+                <name>VMS_VehicleInformation</name>
+                <namespace>urn:com:appian:types:vms</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>action_txt</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SonakshiD</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types:vms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:VMS_VehicleInformation"/>
+                    <a:nameRef>vehicle</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>action_txt</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

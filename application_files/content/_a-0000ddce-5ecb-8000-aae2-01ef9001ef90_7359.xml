@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <report>
+        <name>Snehal_report</name>
+        <uuid>_a-0000ddce-5ecb-8000-aae2-01ef9001ef90_7359</uuid>
+        <description>task report</description>
+        <parentUuid>_a-0000dd9c-3021-8000-aae2-01ef9001ef90_5103</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <reportData>
+            <metadata>
+                <baseFilters/>
+                <batchSize>25</batchSize>
+                <columns>
+                    <column>
+                        <drillPath>
+                            <enabled>false</enabled>
+                        </drillPath>
+                        <expression>=tp!name</expression>
+                        <formatToken>string</formatToken>
+                        <group>false</group>
+                        <localId>0</localId>
+                        <name>Name</name>
+                        <show>true</show>
+                    </column>
+                    <column>
+                        <drillPath>
+                            <enabled>false</enabled>
+                        </drillPath>
+                        <expression>=task_status()</expression>
+                        <formatToken>taskstatus</formatToken>
+                        <group>false</group>
+                        <localId>1</localId>
+                        <name>Status</name>
+                        <show>true</show>
+                    </column>
+                    <column>
+                        <drillPath>
+                            <enabled>false</enabled>
+                        </drillPath>
+                        <expression>=pp!name</expression>
+                        <formatToken>string</formatToken>
+                        <group>false</group>
+                        <localId>2</localId>
+                        <name>Process</name>
+                        <show>true</show>
+                    </column>
+                    <column>
+                        <drillPath>
+                            <enabled>false</enabled>
+                        </drillPath>
+                        <expression>=tp!starttime</expression>
+                        <formatToken>datetime</formatToken>
+                        <group>false</group>
+                        <localId>3</localId>
+                        <name>Start Time</name>
+                        <show>true</show>
+                    </column>
+                </columns>
+                <contexts/>
+                <contextType>10</contextType>
+                <quickFilters/>
+                <recursive>false</recursive>
+                <sortColumnLocalId>0</sortColumnLocalId>
+                <sortOrder>1</sortOrder>
+                <startIndex>0</startIndex>
+                <type>2</type>
+            </metadata>
+            <display>
+                <description>task report</description>
+                <displayThresholds>false</displayThresholds>
+                <displayType>0</displayType>
+                <name>Snehal_report</name>
+                <quickFilterDisplay>0</quickFilterDisplay>
+                <showLegend>true</showLegend>
+                <showQuickFiltersInToolbar>true</showQuickFiltersInToolbar>
+                <supportedTypes>
+                    <supportedType>0</supportedType>
+                    <supportedType>1</supportedType>
+                    <supportedType>2</supportedType>
+                    <supportedType>3</supportedType>
+                    <supportedType>4</supportedType>
+                    <supportedType>5</supportedType>
+                    <supportedType>6</supportedType>
+                    <supportedType>7</supportedType>
+                </supportedTypes>
+                <useCustomToolbar>false</useCustomToolbar>
+                <useDefaultBarGraphXML>true</useDefaultBarGraphXML>
+                <useDefaultLineGraphXML>true</useDefaultLineGraphXML>
+                <useDefaultPieGraphXML>true</useDefaultPieGraphXML>
+            </display>
+            <modified>false</modified>
+            <showDisplayOptions>false</showDisplayOptions>
+            <showTitle>false</showTitle>
+            <showToolbar>false</showToolbar>
+            <view>0</view>
+            <writeAccess>false</writeAccess>
+        </reportData>
+    </report>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SnehalH</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

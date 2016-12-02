@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:vms"
+  xmlns:tns="urn:com:appian:types:vms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="VMS_VehicleStatus">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[This cdt is used after every step to check status]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Request_Id" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="Maintenance_Status" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_Status_for_Record</name>
+        <uuid>71783b3f-0ce0-43dd-8347-868538b69d1a</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>/*load(&#xD;
+  local!pagingInfo: a!pagingInfo(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 10&#xD;
+    &#xD;
+    ),&#xD;
+  local!status:rule!getStatusbyRequestId(ri!requestId),&#xD;
+  a!dashboardLayout(&#xD;
+  a!gridField(&#xD;
+    totalCount:&quot;10&quot;,&#xD;
+    label: &quot;Status Of Vehicle :&quot;,&#xD;
+    columns: {&#xD;
+        a!gridTextColumn(&#xD;
+          label: &quot;Status:&quot;,&#xD;
+          field: &quot;Maintenance_Status&quot;,&#xD;
+          data: index(local!status, &quot;Maintenance_Status&quot;, null)&#xD;
+        )&#xD;
+    },&#xD;
+    value: local!pagingInfo,&#xD;
+      saveInto: local!pagingInfo&#xD;
+  )&#xD;
+)&#xD;
+)&#xD;
+*/&#xD;
+&#xD;
+load(&#xD;
+ &#xD;
+  local!status:#&quot;f9d1ea19-d872-4b7e-bef0-41b2eaf47479&quot;(232).Maintenance_Status,&#xD;
+  #&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+  #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+  &#xD;
+   &#xD;
+       &#xD;
+          label: &quot;Status : &quot;,
+    labelposition: &quot;ADJACENT&quot;,&#xD;
+         value : local!status,&#xD;
+         saveInto: ri!requestId,&#xD;
+         readOnly:true&#xD;
+         &#xD;
+        &#xD;
+    &#xD;
+    &#xD;
+  )&#xD;
+)&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>requestId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SnehalH</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

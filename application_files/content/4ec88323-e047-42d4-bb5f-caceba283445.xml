@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>Cancel_req_interface</name>
+        <uuid>4ec88323-e047-42d4-bb5f-caceba283445</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>load(&#xD;
+  local!pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+    startIndex: 1,&#xD;
+    batchSize: 20,&#xD;
+    sort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(&#xD;
+      field: &quot;Request_Id&quot;,&#xD;
+      ascending: false()&#xD;
+    )&#xD;
+  ),&#xD;
+&#xD;
+  with(&#xD;
+    local!datasubset: #&quot;SYSTEM_SYSRULES_queryEntity&quot;(&#xD;
+      entity: #&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5842&quot;,&#xD;
+      query: #&quot;SYSTEM_SYSRULES_query&quot;(&#xD;
+        selection: #&quot;SYSTEM_SYSRULES_querySelection&quot;(columns: {&#xD;
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Name&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Contact_Number&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Customer_Email_Id&quot;),&#xD;
+          #&quot;SYSTEM_SYSRULES_queryColumn&quot;(field: &quot;Request_Id&quot;),&#xD;
+        }),&#xD;
+        pagingInfo: local!pagingInfo&#xD;
+      )&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+      totalCount: local!datasubset.totalCount,&#xD;
+      columns: {&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Request_Id&quot;,&#xD;
+          field: &quot;Request_Id&quot;,&#xD;
+          data: index(local!datasubset.data, &quot;Request_Id&quot;, null),&#xD;
+          links: apply(#&quot;SYSTEM_SYSRULES_submitLink&quot;(&#xD;
+            confirmmessage: &quot;Do you want to cancel this request?&quot;,&#xD;
+            value: _, saveInto: ri!requesttry), local!datasubset.data&#xD;
+            &#xD;
+            &#xD;
+            )&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Customer_Name&quot;,&#xD;
+          field: &quot;Customer_Name&quot;,&#xD;
+          data: index(local!datasubset.data, &quot;Customer_Name&quot;, null)&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Customer_Contact_Number&quot;,&#xD;
+          field: &quot;Customer_Contact_Number&quot;,&#xD;
+          data: index(local!datasubset.data, &quot;Customer_Contact_Number&quot;, null)&#xD;
+        ),&#xD;
+        #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(&#xD;
+          label: &quot;Customer_Email_Id&quot;,&#xD;
+          field: &quot;Customer_Email_Id&quot;,&#xD;
+          data: index(local!datasubset.data, &quot;Customer_Email_Id&quot;, null)&#xD;
+        )&#xD;
+      },&#xD;
+      value: local!pagingInfo,&#xD;
+      saveInto: local!pagingInfo&#xD;
+    )&#xD;
+  )&#xD;
+)&#xD;
+</definition>
+        <namedTypedValue>
+            <name>requesttry</name>
+            <type>
+                <name>VMS_VehicleInformation</name>
+                <namespace>urn:com:appian:types:vms</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SnehalH</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

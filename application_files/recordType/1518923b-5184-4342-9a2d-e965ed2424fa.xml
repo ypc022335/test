@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="VMS Suzanne View" a:uuid="1518923b-5184-4342-9a2d-e965ed2424fa">
+        <a:pluralName>VMS Suzanne View</a:pluralName>
+        <a:description>VMS Vehicle Request</a:description>
+        <a:urlStub>QFB8HA</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="effe9296-4f09-46ad-8285-b42ad41e6e1c@_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5910"/>
+        <a:listViewTemplateExpr>#&quot;SYSTEM_SYSRULES_recordGridLayoutColumns&quot;(
+  columns: {
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Request_Id&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_linkField&quot;(
+        links: #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+          label: rf!Request_Id,
+          recordType: rp!type,
+          identifier: rp!id
+        )
+
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Vehicle Model&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_Model
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Vehicle Category&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_Category
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Last Delivery Date&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_dateField&quot;(
+        displayvalue: rf!Date
+      )
+    )  
+  },
+  pageSize: 50,
+  defaultSort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+    field: &quot;Request_Id&quot;,
+    ascending: false
+  )
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>=#&quot;SYSTEM_SYSRULES_dashboardLayout&quot;(&#xD;
+  firstColumnContents: {&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Request Id&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      value: rf!Request_Id,&#xD;
+      readOnly: true&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Customer Name&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      value: rf!Customer_Name,&#xD;
+      readOnly: true&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Customer Contact&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      value: rf!Customer_Contact_Number,&#xD;
+      readOnly: true&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Vehicle Category&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      value: rf!Vehicle_Category,&#xD;
+      readOnly: true&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Vehicle Model&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      value: rf!Vehicle_Model,&#xD;
+      readOnly: true&#xD;
+    ),&#xD;
+    #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label: &quot;Vehicle Plate Number&quot;,&#xD;
+      labelPosition: &quot;ADJACENT&quot;,&#xD;
+      value: rf!Customer_Email_Id,&#xD;
+      readOnly: true&#xD;
+    )&#xD;
+  }&#xD;
+)</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:detailViewCfg>
+            <a:nameExpr>&quot;Date&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;70ac778f-ac96-4c04-9022-a98363c42311&quot;(&#xD;
+date:rf!Date&#xD;
+)&#xD;
+</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>_PrlKTA</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002ddc6-c59e-8000-aae2-014d98014d98"/>
+            <a:contextExpr>{
+  requestId:rf!Request_Id
+}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>ada78162-4db7-4117-b6a0-c1cee331165f</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr>&quot;Vehicle Status of &quot; &amp; rf!Vehicle_Model &quot; is &quot;  rf!Customer_Name</a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_85</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>

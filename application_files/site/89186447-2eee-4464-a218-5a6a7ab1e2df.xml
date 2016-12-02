@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siteHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <site a:uuid="89186447-2eee-4464-a218-5a6a7ab1e2df" name="snehal_userdetails_site">
+    <description/>
+    <urlStub>snehal-userdetails-site</urlStub>
+    <page>
+      <staticName>UserDetails</staticName>
+      <description/>
+      <urlStub>userdetails</urlStub>
+      <uiObject a:uuid="0003dd95-9eae-8000-aae2-014d98014d98" xsi:type="a:ProcessModel"/>
+      <iconId>f06e</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+    </page>
+    <visibility>805306368</visibility>
+    <headerBackgroundColor/>
+    <selectedTabBackgroundColor/>
+    <faviconHref>https://pixabay.com/static/uploads/photo/2011/05/31/20/48/drop-of-water-7720_960_720.jpg</faviconHref>
+    <logoHref>https://pixabay.com/static/uploads/photo/2016/10/10/09/39/drip-1727940_960_720.jpg</logoHref>
+    <headerBackgroundColorExpr/>
+    <selectedTabBackgroundColorExpr/>
+  </site>
+  <roleMap/>
+</siteHaul>

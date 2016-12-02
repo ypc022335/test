@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_SuzanneAgainmakeSchedule</name>
+        <uuid>d8ccbf71-d4d4-4474-9154-01d6ed756226</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=load(&#xD;
+  local!selectedDate:0,&#xD;
+ local!date:#&quot;7a6a60db-dedb-4f25-ad07-173efa88f3ca&quot;(ri!date,&quot;Available&quot;),&#xD;
+  local!gridSelection: #&quot;SYSTEM_SYSRULES_gridSelection&quot;(&#xD;
+    pagingInfo: #&quot;SYSTEM_SYSRULES_pagingInfo&quot;(&#xD;
+      startIndex: 1,&#xD;
+      batchSize: 25&#xD;
+    )&#xD;
+  ),&#xD;
+  &#xD;
+    if(&#xD;
+      count(local!date)=0 ,&#xD;
+   &#xD;
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(&#xD;
+        firstColumnContents:&#xD;
+        {&#xD;
+      #&quot;SYSTEM_SYSRULES_textField&quot;(&#xD;
+      label:&quot;No Date and Time slots are available &quot; &amp;ri!date,&#xD;
+      readOnly:&quot;true&quot;&#xD;
+    ),&#xD;
+    &#xD;
+     #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+         #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+        label: &quot;Submit&quot;,&#xD;
+        value:&quot;Check Nearby Dates&quot;,&#xD;
+        saveinto:{&#xD;
+          action:ri!action,&#xD;
+          a!save(&#xD;
+            ri!selected,&#xD;
+           local!selectedDate&#xD;
+          )&#xD;
+        }&#xD;
+        )&#xD;
+      )&#xD;
+      }&#xD;
+      &#xD;
+       ),&#xD;
+   &#xD;
+  with(&#xD;
+    /* Replace the value of local!datasubset with `a!queryEntity()`, or */&#xD;
+    /* `queryrecord()`, or use your own CDT array in todatasubset()    `*/&#xD;
+    local!datasubset: todatasubset(local!date, local!gridSelection.pagingInfo),&#xD;
+    &#xD;
+    #&quot;SYSTEM_SYSRULES_formLayout&quot;(&#xD;
+      label: &quot;Select date&quot;,&#xD;
+      firstColumnContents:{&#xD;
+        #&quot;SYSTEM_SYSRULES_gridField&quot;(&#xD;
+          label: &quot;Date&quot;,&#xD;
+          totalCount: local!datasubset.totalCount,&#xD;
+          columns: {&#xD;
+            #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Date&quot;, field: &quot;Date&quot;, data: index(local!datasubset.data, &quot;Date&quot;, {})),&#xD;
+            #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Time&quot;,  field: &quot;Time&quot;,  data: index(local!datasubset.data, &quot;Time&quot;, {})),&#xD;
+            #&quot;SYSTEM_SYSRULES_gridTextColumn&quot;(label: &quot;Availability_Status&quot;, field: &quot;Availability_Status&quot;, data: index(local!datasubset.data, &quot;Availability_Status&quot;, {}))&#xD;
+          },&#xD;
+          identifiers: index(local!datasubset.data, &quot;Id&quot;, {}),&#xD;
+         &#xD;
+          value: local!gridSelection,&#xD;
+          saveInto: {&#xD;
+            local!gridSelection,&#xD;
+            if(&#xD;
+              count(local!gridSelection.selected)&gt;1,&#xD;
+              /* Does not update the value if the user is attempting to select more than one id */&#xD;
+              {},&#xD;
+              /*` Stores the selected id only */&#xD;
+              a!save(local!selectedDate, index(save!value, &quot;selected&quot;, null))&#xD;
+             &#xD;
+            ),&#xD;
+             a!save(&#xD;
+            ri!selected,&#xD;
+            local!selectedDate&#xD;
+          )&#xD;
+          },&#xD;
+          &#xD;
+          ri!selected:local!selectedDate,&#xD;
+          selection: true,&#xD;
+           validations:&#xD;
+          {&#xD;
+          if(count(local!gridSelection.selected)&gt;1, &quot;You may only select one date&quot;, null)&#xD;
+         &#xD;
+          &#xD;
+  }&#xD;
+        ),&#xD;
+       &#xD;
+      },&#xD;
+     buttons:#&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(&#xD;
+        primaryButtons: #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(&#xD;
+          label: &quot;Submit&quot;,&#xD;
+        value:&quot;Submit&quot;,&#xD;
+          saveinto:ri!action&#xD;
+          &#xD;
+        )&#xD;
+      )&#xD;
+    )&#xD;
+    &#xD;
+    )&#xD;
+  )&#xD;
+)</definition>
+        <namedTypedValue>
+            <name>date</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>action</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selected</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>SonakshiD</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:date"/>
+                    <a:nameRef>date</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>action</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>selected</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

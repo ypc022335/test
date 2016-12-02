@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_getDateStatus</name>
+        <uuid>f4c14460-7015-4959-904e-122e8519861a</uuid>
+        <description></description>
+        <parentUuid>_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5730</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#&quot;SYSTEM_SYSRULES_queryEntity&quot;(
+  entity:#&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6410&quot;,
+  query:#&quot;SYSTEM_SYSRULES_query&quot;(
+   logicalExpression:#&quot;SYSTEM_SYSRULES_queryLogicalExpression&quot;(
+      operator:&quot;AND&quot;,
+      filters:
+      {
+        #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+        field: &quot;Date&quot;,
+        operator: &quot;=&quot;,
+        value: ri!date,
+        saveInto:ri!date
+      ),
+       #&quot;SYSTEM_SYSRULES_queryFilter&quot;(
+        field: &quot;Availability_Status&quot;,
+        operator: &quot;=&quot;,
+        value: &quot;Available&quot;
+      )
+      }
+    ),
+    pagingInfo:#&quot;SYSTEM_SYSRULES_pagingInfo&quot;(
+      startIndex:1,
+      batchSize:-1
+    )
+  )
+  
+)
+</definition>
+        <namedTypedValue>
+            <name>date</name>
+            <type>
+                <name>date</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+</contentHaul>

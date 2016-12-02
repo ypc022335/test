@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:vms"
+  xmlns:tns="urn:com:appian:types:vms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="VMS_AdminData">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[Store user queries and solutions in dataentity]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="systemUserName_text" nillable="true" type="xsd:string"/>
+      <xsd:element name="issueCategory_text" nillable="true" type="xsd:string"/>
+      <xsd:element name="issueDescription_text" nillable="true" type="xsd:string"/>
+      <xsd:element name="issueSolution_text" nillable="true" type="xsd:string"/>
+      <xsd:element name="issueId" nillable="true" type="xsd:int">
+        <xsd:annotation>
+          <xsd:appinfo source="appian.jpa">@Id @GeneratedValue</xsd:appinfo>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

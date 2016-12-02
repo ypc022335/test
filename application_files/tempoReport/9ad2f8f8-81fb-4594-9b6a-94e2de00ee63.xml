@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tempoReportHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <tempoReport name="VMS_MaintenanceStatus_Report" a:uuid="9ad2f8f8-81fb-4594-9b6a-94e2de00ee63">
+        <a:description>this report contains status report interface</a:description>
+        <a:uiExpr>=#&quot;_a-0000ddbd-335c-8000-aae2-01ef9001ef90_6741&quot;()</a:uiExpr>
+        <a:urlStub>Uo04sA</a:urlStub>
+    </tempoReport>
+    <roleMap/>
+</tempoReportHaul>

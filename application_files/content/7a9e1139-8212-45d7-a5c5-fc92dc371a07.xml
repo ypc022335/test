@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <rule>
+        <name>VMS_DatesEntry</name>
+        <uuid>7a9e1139-8212-45d7-a5c5-fc92dc371a07</uuid>
+        <description>The senior manager enters dates to be made available for registration</description>
+        <parentUuid>_a-0000dd72-6187-8000-aae2-01ef9001ef90_4186</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>=#&quot;SYSTEM_SYSRULES_formLayout&quot;(
+  label: &quot;Registration Dates&quot;,
+  instructions: &quot;Enter Next Working Days to be made Available for Registration&quot;,
+  firstColumnContents: {
+   
+    #&quot;SYSTEM_SYSRULES_dateField&quot;(
+      label: &quot;Enter Date&quot;,
+      labelposition: &quot;ADJACENT&quot;,
+      value:ri!VMS_ScheduleTable.Date,
+      saveInto:ri!VMS_ScheduleTable.Date,
+      required:&quot;true&quot;
+    ),
+    
+   /* a!dateField(
+      label: &quot;To&quot;,
+      labelposition: &quot;ADJACENT&quot;,
+      value:ri!VMS_ScheduleTable.Date,
+      saveInto:ri!VMS_ScheduleTable.Date,
+      required:&quot;true&quot;
+    ),
+    */
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Time&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      placeholderLabel: &quot;Select a time&quot;,
+      choiceLabels: {&quot;9 AM&quot;, &quot;12 PM&quot;,
+        &quot;3 PM&quot;,
+        &quot;6 PM&quot;},
+      choiceValues: {9, 12,
+        3,
+        6},
+      value: ri!VMS_ScheduleTable.Time,
+      saveInto: ri!VMS_ScheduleTable.Time,
+      validations: {}
+    ),
+    #&quot;SYSTEM_SYSRULES_dropdownField&quot;(
+      label: &quot;Availability Status&quot;,
+      labelPosition: &quot;ADJACENT&quot;,
+      placeholderLabel: &quot;Select a status&quot;,
+      choiceLabels: {&quot;Available&quot;, &quot;Unavailable&quot;},
+      choiceValues: {&quot;Available&quot;, &quot;Unavailable&quot;},
+      value: ri!VMS_ScheduleTable.Availability_Status,
+      saveInto: ri!VMS_ScheduleTable.Availability_Status,
+      validations: {}
+    )
+  },
+  secondColumnContents: {
+    /* Add components here for a two-column form */
+    #&quot;SYSTEM_SYSRULES_sectionLayout&quot;(
+      label: &quot;&quot;,
+      firstColumnContents: {},
+      secondColumnContents: {}
+    )
+  },
+  buttons: #&quot;SYSTEM_SYSRULES_ButtonLayout&quot;(
+    primaryButtons: {
+      #&quot;SYSTEM_SYSRULES_ButtonWidgetSubmit&quot;(
+        label: &quot;Make Available&quot;,
+        style: &quot;PRIMARY&quot;,
+        confirmmessage: &quot;Open this date?&quot;,
+        value: ri!makeAvailable_text,
+        saveinto: ri!makeAvailable_text
+      )
+    },
+    secondaryButtons: {
+    
+    }
+  ),
+  validations: {}
+)</definition>
+        <namedTypedValue>
+            <name>VMS_ScheduleTable</name>
+            <type>
+                <name>VMS_ScheduleTable</name>
+                <namespace>urn:com:appian:types:vms</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>makeAvailable_text</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role allowForAll="false" inherit="true" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="true" name="administrators">
+            <users>
+                <userUuid>ShraddhaJ</userUuid>
+            </users>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role allowForAll="false" inherit="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:n1="urn:com:appian:types:vms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="n1:VMS_ScheduleTable"/>
+                    <a:nameRef>VMS_ScheduleTable</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string"/>
+                    <a:nameRef>makeAvailable_text</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+</contentHaul>

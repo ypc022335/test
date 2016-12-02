@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:vms"
+  xmlns:tns="urn:com:appian:types:vms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="VMS_Parts_Required">
+    <xsd:sequence>
+      <xsd:element name="Request_Id" nillable="true" type="xsd:int"/>
+      <xsd:element name="Parts_Id" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

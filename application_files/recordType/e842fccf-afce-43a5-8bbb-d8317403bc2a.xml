@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <recordType name="Mike_record" a:uuid="e842fccf-afce-43a5-8bbb-d8317403bc2a">
+        <a:pluralName>Mike_records</a:pluralName>
+        <a:description>records to mike and changing status of maintainance</a:description>
+        <a:urlStub>K_csqg</a:urlStub>
+        <a:source xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:DataStoreEntity" a:uuid="effe9296-4f09-46ad-8285-b42ad41e6e1c@_a-0000ddbd-335c-8000-aae2-01ef9001ef90_5910"/>
+        <a:listViewTemplateExpr>#&quot;SYSTEM_SYSRULES_recordGridLayoutColumns&quot;(
+  emptygridmessage: &quot;No records in the list&quot;,
+  columns: {
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Request Id&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_linkField&quot;(
+        links: {
+          #&quot;SYSTEM_SYSRULES_recordLink&quot;(
+            label: rf!Request_Id,
+            recordtype: rp!type,
+            identifier: rp!id)
+        }
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Customer_Name&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Customer_Name
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Customer_Contact_Number&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayValue: rf!Customer_Contact_Number
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Customer_Email_Id&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayValue: rf!Customer_Email_Id
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Plate Number&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_License_Number
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Vehicle Model&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_Model
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Vehicle Catagory&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_textField&quot;(
+        displayvalue: rf!Vehicle_Category
+      )
+    ),
+    #&quot;SYSTEM_SYSRULES_gridLayoutColumn&quot;(
+      label: &quot;Date to deliver&quot;,
+      width: &quot;DISTRIBUTE&quot;,
+      component: #&quot;SYSTEM_SYSRULES_recordGrid_dateField&quot;(
+        displayvalue: rf!Date
+      )
+    )  
+  },
+  pageSize: 50,
+  defaultSort: #&quot;SYSTEM_SYSRULES_sortInfo&quot;(
+    field: &quot;Request_Id&quot;,
+    ascending: false)
+)</a:listViewTemplateExpr>
+        <a:detailViewCfg>
+            <a:nameExpr>=&quot;Summary&quot;</a:nameExpr>
+            <a:uiExpr>#&quot;71783b3f-0ce0-43dd-8347-868538b69d1a&quot;(&#xD;
+  requestId:rf!Request_Id&#xD;
+)&#xD;
+</a:uiExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:urlStub>summary</a:urlStub>
+            <a:headerExpr></a:headerExpr>
+        </a:detailViewCfg>
+        <a:defaultFilter>
+            <a:field>Request_Id</a:field>
+            <a:operator>in</a:operator>
+            <a:valueExpression>tointeger(#&quot;6f84a7fe-da92-48ff-ad49-84414892abd6&quot;().data.Request_Id)
+
+</a:valueExpression>
+        </a:defaultFilter>
+        <a:relatedActionCfg>
+            <a:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:ProcessModel" a:uuid="0002ddc6-8427-8000-aae2-014d98014d98"/>
+            <a:contextExpr>{requestId:rf!Request_Id}</a:contextExpr>
+            <a:visibilityExpr>=true()</a:visibilityExpr>
+            <a:refId>f49aee17-58f4-46a5-bfdf-4e5b26b5efd6</a:refId>
+        </a:relatedActionCfg>
+        <a:isSystem>false</a:isSystem>
+        <a:dataSrcExpr></a:dataSrcExpr>
+        <a:facetsListExpr></a:facetsListExpr>
+        <a:titleExpr>&quot;Vehicle Status of &quot; &amp; rf!Vehicle_Model &quot; is &quot;  rf!Customer_Name</a:titleExpr>
+        <a:defaultFiltersExpr></a:defaultFiltersExpr>
+        <a:layoutType>GRID</a:layoutType>
+        <a:security>16383</a:security>
+    </recordType>
+    <roleMap>
+        <role name="record_type_administrator">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000ddba-c186-8000-aae2-011e94011e94_84</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+</recordTypeHaul>

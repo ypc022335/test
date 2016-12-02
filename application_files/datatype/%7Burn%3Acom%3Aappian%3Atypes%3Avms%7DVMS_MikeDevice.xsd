@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="urn:com:appian:types:vms"
+  xmlns:tns="urn:com:appian:types:vms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="VMS_MikeDevice">
+    <xsd:annotation>
+      <xsd:documentation><![CDATA[This cdt is used by Mike for saving maintenance completion on his device]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Request_Id" nillable="true" type="xsd:int"/>
+      <xsd:element name="Date" nillable="true" type="xsd:date"/>
+      <xsd:element name="Time" nillable="true" type="xsd:int"/>
+      <xsd:element name="Maintainence_Status" nillable="true" type="xsd:string"/>
+      <xsd:element name="TableId" nillable="true" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
